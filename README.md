@@ -4,7 +4,9 @@ This is a solution to implement SQL Server security mechanisms to protect data
 
 The implementation is structured using the following features:
 
-## Dynamic Data Masking
+## Dynamic Data Masking (DDM)
+use DDM to obfuscate PII or PHI data. This will prevent data abuse, i.e. someone with access to the data to see its full content. For example a Customer Service clerk can see only the last 4 digits of a credit card number, or the just the initial 2 digits from customer's last name<br>
+If this end user (customer service clerk) gains access to tools like SSMS or any other data extraction tool, all masked columns will be exported with masking<br>
 
 ## Row Level Security
 
@@ -26,19 +28,23 @@ This solution **prioritized** finding options using **built-in permissions**, as
 
 ## NOTES: 
 
-### 1-  All scripts display the **login name** to be used for that script at the very top.<br>
+###  1. All scripts display the **login name** to be used for that script at the very top.<br>
 #### line 2 on the image below shows to use **sa**.
 ![Login Information](images/Username-Password-to-use.png)
 <br>
 <ul>
 <li>Execute the Query to display the username to make sure you are using the correct persona</li>
-<li>For scripts that switch between MASTER and the SQLSecurityDemoDB databases:<ul>
+<li>For scripts that switch between MASTER and the SQLSecurityDemoDB databases:</li>
+  <ul>
   <li>After Switching the database, execute the query to display the username again, so you can see how that user is mapped</li>
   <li>When testing these scripts on Azure SQL Database the **USE** command will fail, you need to switch the database manually via SSMS toolbar</li>
   </ul>
 </ul>
 <br>
 
+### 2. The features demonstrated here work independently.<br>
+
+#### .
 
 ## disclaimer
 
